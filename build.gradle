@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+}
+
+group = 'pl.business'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+
+    logbackVersion = '1.5.6'
+}
+
+
+dependencies {
+
+    implementation "ch.qos.logback:logback-classic:$logbackVersion"
+
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    implementation 'org.seleniumhq.selenium:selenium-chrome-driver:4.26.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.26.0'
+
+    testImplementation platform('org.junit:junit-bom:5.10.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.34'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testImplementation 'org.mockito:mockito-core:5.14.2'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
